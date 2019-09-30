@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+version = 1.3
+group = 'cn.pedant.sweetalert'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 29
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation 'com.pnikosis:materialish-progress:1.7'
+}

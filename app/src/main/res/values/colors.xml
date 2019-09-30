@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E60000</color>
+    <color name="colorPrimaryDark">#E60000</color>
+    <!-- <color name="colorPrimary">#02a3d6</color>
+     <color name="colorPrimaryDark">#02a3d6</color>-->
+     <color name="colorAccent">#D81B60</color>
+     <color name="white">#FFF</color>
+     <color name="grey">#F1F1F1</color>
+     <color name="transparent">#00000000</color>
+     <color name="title_bg_pressed">#33d4cdcd</color>
+     <color name="dialog_text">#4D4D4D</color>
+ </resources>

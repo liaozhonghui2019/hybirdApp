@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.egrand.web">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".APP"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon"
+        tools:targetApi="n">
+
+        <activity
+            android:name=".activity.DevTestActivity"
+            android:label="开发测试"
+            android:theme="@style/AppTheme.NoneActionBar" />
+        <activity
+            android:name=".activity.UserActivity"
+            android:label="用户信息"
+            android:theme="@style/AppTheme.NoneActionBar" />
+        <activity
+            android:name=".activity.DBActivity"
+            android:label="数据库测试"
+            android:theme="@style/AppTheme.NoneActionBar" />
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoneActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.WebActivity"
+            android:theme="@style/AppTheme.NoneActionBar" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.egrand.web"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

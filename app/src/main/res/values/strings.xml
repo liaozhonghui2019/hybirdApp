@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">移动端</string>
+    <string name="loading">加载中</string>
+    <string name="loading_error">加载出错</string>
+    <string name="no_data">暂无数据</string>
+    <string name="update_user">Update username</string>
+    <string name="db_btnUser">查看用户信息</string>
+
+</resources>

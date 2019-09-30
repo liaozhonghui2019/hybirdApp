@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/colorPrimary"
+        android:minHeight="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="@dimen/toolbar_height"
+                android:layout_height="match_parent"
+                android:background="@drawable/title_selector"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                android:src="@drawable/ic_back"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/ivBack"
+                android:layout_toEndOf="@+id/ivBack"
+                android:layout_toLeftOf="@+id/ivMenu"
+                android:layout_toStartOf="@+id/ivMenu"
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="应用中心"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:singleLine="true" />
+
+            <ImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="@dimen/toolbar_height"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:visibility="invisible"
+                android:background="@drawable/title_selector"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_action_menu"
+                android:contentDescription="@null" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srlHeaderMaxDragRate="1.5"
+            app:srlHeaderTriggerRate="0.8">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlClassicsSpinnerStyle="Translate"
+                app:srlFinishDuration="300"
+                app:srlPrimaryColor="#444444" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingTop="6dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlClassicsSpinnerStyle="Translate"
+                app:srlFinishDuration="0" />
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <include
+            layout="@layout/layout_loading"
+            tools:visibility="gone" />
+
+        <include
+            layout="@layout/layout_empty"
+            tools:visibility="gone" />
+
+        <include
+            layout="@layout/layout_error"
+            tools:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

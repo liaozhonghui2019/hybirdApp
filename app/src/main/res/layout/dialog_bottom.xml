@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_dialog"
+    android:layout_width="match_parent"
+    android:minHeight="200dp"
+    android:paddingBottom="30dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvUrl"
+        android:layout_width="match_parent"
+        tools:text="网页由baidu.com提供"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="6dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</LinearLayout>
