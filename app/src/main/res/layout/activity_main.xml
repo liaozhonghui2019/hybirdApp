@@ -4,63 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:background="@color/colorPrimary"
-        android:minHeight="0dp"
-        app:contentInsetStart="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height">
-
-            <ImageView
-                android:id="@+id/ivBack"
-                android:layout_width="@dimen/toolbar_height"
-                android:layout_height="match_parent"
-                android:background="@drawable/title_selector"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                android:src="@drawable/ic_back"
-                android:contentDescription="@null" />
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/ivBack"
-                android:layout_toEndOf="@+id/ivBack"
-                android:layout_toLeftOf="@+id/ivMenu"
-                android:layout_toStartOf="@+id/ivMenu"
-                android:ellipsize="marquee"
-                android:scrollHorizontally="true"
-                android:focusableInTouchMode="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="应用中心"
-                android:textColor="#ffffff"
-                android:textSize="18sp"
-                android:singleLine="true" />
-
-            <ImageView
-                android:id="@+id/ivMenu"
-                android:layout_width="@dimen/toolbar_height"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:visibility="invisible"
-                android:background="@drawable/title_selector"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_action_menu"
-                android:contentDescription="@null" />
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
+    <include layout="@layout/layout_toolbar" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -70,6 +17,8 @@
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:srlEnableLoadMore="false"
+            app:srlEnableRefresh="false"
             app:srlHeaderMaxDragRate="1.5"
             app:srlHeaderTriggerRate="0.8">
 

@@ -6,17 +6,20 @@ import android.util.Log
 import com.egrand.web.R
 import com.egrand.web.dao.AppDatabase
 import com.egrand.web.db.AppDbHelper
+import com.egrand.web.utils.Utils
 import kotlinx.android.synthetic.main.activity_db.*
-import kotlinx.android.synthetic.main.activity_db.ivBack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import com.egrand.web.activity.UserActivity as UserActivity1
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class DBActivity : BaseAppCompatActivity() {
 
     override val layoutRes: Int = R.layout.activity_db
-    override fun useToolbar(): Boolean = false
+    override fun useToolbar()= true
+    override fun useMenu() = false
+    private var versionCode ="";
 
     override fun onCreated(savedInstanceState: Bundle?) {
         super.onCreated(savedInstanceState)
@@ -25,16 +28,22 @@ class DBActivity : BaseAppCompatActivity() {
         }
         initialDB()
         initListeners()
+
     }
 
     /**
      * 按钮监听事件
      */
     private fun initListeners() {
+        var utils = Utils()
+
         //实现点击后跳转到对应页面
         //调用startActivity方法需要在项目中添加Anko相应资源
         //startActivity<TabDemo1>()是Anko的语法,等价于java中startActivity(MainActivity.this, HttpAct.class)
-//        widgets_btn?.setOnClickListener {startActivity<WidgetsAct>()}
+        widgets_btn.setOnClickListener {
+            versionCode = utils.getVersionCode(this@DBActivity);
+            showToast("appVersionCode:$versionCode")
+        }
 //        json_btn?.setOnClickListener {startActivity<JsonAct>()}
 //        http_btn?.setOnClickListener {startActivity<HttpAct>()}
 

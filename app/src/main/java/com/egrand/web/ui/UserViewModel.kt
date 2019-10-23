@@ -33,6 +33,7 @@ class UserViewModel(private val dataSource: UserDao) : ViewModel() {
         return dataSource.insertUser(user)
     }
 
+
     companion object {
         // using a hardcoded value for simplicity
         const val USER_ID =1

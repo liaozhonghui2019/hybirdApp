@@ -18,6 +18,7 @@ import com.egrand.web.entity.DialogMenuItem
 import com.egrand.web.utils.Utils
 import com.egrand.web.view.BottomDialog
 import kotlinx.android.synthetic.main.activity_web.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 
 class WebActivity : BaseAppCompatActivity() {

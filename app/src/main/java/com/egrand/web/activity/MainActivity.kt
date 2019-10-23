@@ -23,12 +23,15 @@ class MainActivity : BaseRecyclerViewActivity<App>() {
 
     override fun showBack(): Boolean = false
 
+    override fun useMenu(): Boolean = false
+
+    override fun useBack(): Boolean = false
+
     override fun getLayoutManager(): RecyclerView.LayoutManager = GridLayoutManager(this, 4)
 
     override fun onCreated(savedInstanceState: Bundle?) {
         super.onCreated(savedInstanceState)
-        refreshLayout.setEnableLoadMore(false)
-        refreshLayout.setEnableRefresh(false)
+        title = "应用中心"
 
         /*GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -88,7 +91,10 @@ class MainActivity : BaseRecyclerViewActivity<App>() {
                 } else if (app.id == 1L) {
                     val intent = Intent(this@MainActivity, DBActivity::class.java)
                     startActivity(intent)
-                }else {
+                } else if (app.id == 99L) {
+                    val intent = Intent(this@MainActivity, ListViewActivity::class.java)
+                    startActivity(intent)
+                } else {
                     showWarnDialog("尚未配置地址！")
                 }
             }
@@ -98,7 +104,6 @@ class MainActivity : BaseRecyclerViewActivity<App>() {
     }
 
     override fun loadPage(dir: Int) {
-
         val data: MutableList<App> = arrayListOf(
 //            App(1, "广东省党建", "", R.drawable.icon_1),
 //            App(2, "轻工党建", "", R.drawable.icon_64),
@@ -111,12 +116,13 @@ class MainActivity : BaseRecyclerViewActivity<App>() {
             App(9, "深圳党建", "http://10.1.10.14:81/", R.drawable.icon_130),
             App(99, "长春党建", "http://10.1.10.14/", R.drawable.icon_108),
        //     App(10, "惠服务", "", R.drawable.icon_40),
-      //      App(11, "工作日志", "", R.drawable.icon_124),
+            App(11, "工作日志", "", R.drawable.icon_124),
             App(99, "三重一大", "http://10.1.10.221:8000/", R.drawable.icon_77),
             App(99, "三重一大(8443)", "https://10.1.10.221:8443/", R.drawable.icon_77),
             App(99, "三重一大(公网)", "http://120.79.143.26/", R.drawable.icon_77),
             App(12, "Github", "https://github.com/", R.drawable.icon_44),
-            App(0L, "开发测试", "", R.drawable.icon_58),
+            App(0, "开发测试", "", R.drawable.icon_58),
+            App(99, "ListView", "", R.drawable.icon_58),
             App(1L, "数据库测试", "", R.drawable.icon_58)
         )
         onLoadDataFinish(data, dir, 1)

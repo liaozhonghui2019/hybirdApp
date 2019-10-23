@@ -26,7 +26,8 @@ class Utils {
         var versionCode = ""
         try {
             packageInfo = packageManager.getPackageInfo(context.packageName, 0)
-            versionCode = packageInfo.versionName + ""
+            versionCode =packageInfo.packageName+":"
+            versionCode += packageInfo.versionName + "_"+packageInfo.lastUpdateTime;
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }

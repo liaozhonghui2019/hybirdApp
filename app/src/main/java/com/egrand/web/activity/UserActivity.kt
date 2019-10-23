@@ -2,8 +2,8 @@ package com.egrand.web.activity
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.egrand.web.Injection
 import com.egrand.web.R
 import com.egrand.web.ui.UserViewModel
@@ -18,18 +18,19 @@ import kotlinx.android.synthetic.main.activity_user.*
  * Main screen of the app. Displays a user name and gives the option to update the user name.
  */
 class UserActivity : AppCompatActivity() {
-    private lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: UserViewModel by viewModel()
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private var viewModel: UserViewModel? = null
 
     private val disposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
-
+        //
         viewModelFactory = Injection.provideViewModelFactory(this)
-
+        viewModel = ViewModelProviders.of(this,viewModelFactory).get(UserViewModel::class.java)
         update_user_button.setOnClickListener { updateUserName() }
     }
 
@@ -39,7 +40,8 @@ class UserActivity : AppCompatActivity() {
         // Update the user name text view, at every onNext emission.
         // In case of error, log the exception.
 
-        disposable.add(viewModel.userName()
+        disposable.add(
+            viewModel!!.userName()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ this.user_name.text = it },
@@ -60,7 +62,8 @@ class UserActivity : AppCompatActivity() {
         update_user_button.isEnabled = false
         // Subscribe to updating the user name.
         // Enable back the button once the user name has been updated
-        disposable.add(viewModel.updateUserName(userName,userPwd)
+        disposable.add(
+            viewModel!!.updateUserName(userName,userPwd)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ update_user_button.isEnabled = true },

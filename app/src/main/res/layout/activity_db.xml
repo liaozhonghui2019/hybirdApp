@@ -1,56 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".activity.DBActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <include layout="@layout/layout_toolbar" />
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:background="@color/colorPrimary"
-        android:minHeight="0dp"
-        app:contentInsetStart="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height">
-
-            <ImageView
-                android:id="@+id/ivBack"
-                android:layout_width="@dimen/toolbar_height"
-                android:layout_height="match_parent"
-                android:background="@drawable/title_selector"
-                android:contentDescription="@null"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toStartOf="@+id/ivMenu"
-                android:layout_toLeftOf="@+id/ivMenu"
-                android:layout_toEndOf="@+id/ivBack"
-                android:layout_toRightOf="@+id/ivBack"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="center"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text=""
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
-
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"  android:orientation="vertical">
@@ -91,6 +51,6 @@
             android:text="@string/db_btnUser" />
 
     </LinearLayout>
+    </FrameLayout>
 
-
-</RelativeLayout>
+</LinearLayout>

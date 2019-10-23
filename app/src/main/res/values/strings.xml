@@ -6,4 +6,29 @@
     <string name="update_user">Update username</string>
     <string name="db_btnUser">查看用户信息</string>
 
+    <string-array name="items">
+        <item>1111</item>
+        <item>2222</item>
+        <item>3333</item>
+        <item>4444</item>
+        <item>5555</item>
+        <item>6666</item>
+        <item>7777</item>
+        <item>8888</item>
+        <item>9999</item>
+        <item>1010</item>
+        <item>1111</item>
+        <item>1212</item>
+        <item>1313</item>
+        <item>1414</item>
+        <item>1515</item>
+        <item>1616</item>
+        <item>1717</item>
+        <item>1818</item>
+        <item>1919</item>
+        <item>2020</item>
+        <item>2121</item>
+        <item>2222</item>
+        <item>2323</item>
+    </string-array>
 </resources>

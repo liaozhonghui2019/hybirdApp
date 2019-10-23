@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".activity.ListViewActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1.0"
+        android:layout_height="0dp">
+        <ListView
+            android:id="@+id/lvList"
+            android:layout_width="match_parent"
+            android:entries="@array/items"
+            android:transcriptMode="normal"
+            android:layout_above="@+id/etView"
+            android:layout_height="match_parent"/>
+        <EditText
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:id="@+id/etView"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</LinearLayout>

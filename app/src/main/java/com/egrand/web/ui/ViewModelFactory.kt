@@ -10,35 +10,12 @@ import com.egrand.web.dao.UserDao
 /**
  * Factory for ViewModels
  */
-@Singleton
-class ViewModelFactory @Inject constructor(private val dataSource: UserDao) : ViewModelProvider.Factory,
-    Parcelable {
-
-    constructor(parcel: Parcel) : this(TODO("dataSource")) {
-    }
+class ViewModelFactory (private val dataSource: UserDao) : ViewModelProvider.Factory{
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
             return UserViewModel(dataSource) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<ViewModelFactory> {
-        override fun createFromParcel(parcel: Parcel): ViewModelFactory {
-            return ViewModelFactory(parcel)
-        }
-
-        override fun newArray(size: Int): Array<ViewModelFactory?> {
-            return arrayOfNulls(size)
-        }
     }
 }

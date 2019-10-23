@@ -13,8 +13,7 @@ import com.egrand.web.adpter.recyclerview.MultiItemTypeAdapter
 import com.egrand.web.adpter.recyclerview.ViewHolder
 import com.egrand.web.constant.Constants
 import com.egrand.web.entity.App
-import kotlinx.android.synthetic.main.activity_dev_test.*
-import kotlinx.android.synthetic.main.activity_main.refreshLayout
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class DevTestActivity : BaseRecyclerViewActivity<App>() {
 
@@ -22,12 +21,12 @@ class DevTestActivity : BaseRecyclerViewActivity<App>() {
 
     override fun useItemDecoration(): Boolean = false
 
+    override fun useMenu(): Boolean = false
+
     override fun getLayoutManager(): RecyclerView.LayoutManager = GridLayoutManager(this, 4)
 
     override fun onCreated(savedInstanceState: Bundle?) {
         super.onCreated(savedInstanceState)
-        refreshLayout.setEnableLoadMore(false)
-        refreshLayout.setEnableRefresh(false)
         ivBack.setOnClickListener {
             finish()
         }
