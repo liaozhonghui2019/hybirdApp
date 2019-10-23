@@ -16,12 +16,14 @@ interface UserDao {
     @Query("SELECT * FROM SYS_USER WHERE name LIKE :name LIMIT 1")
     suspend fun findByName(name: String): User
 
+    @Insert
+    suspend fun insertAll(vararg users: User)
 
     @Update
-    suspend fun update(vararg user: User)
+    suspend fun update(vararg users: User)
 
     @Delete
-    suspend fun delete(vararg user: User)
+    suspend fun delete(vararg users: User)
     /**
      * Get a user by id.
      * @return the user from the table with a specific id.

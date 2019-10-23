@@ -24,6 +24,8 @@ abstract class BaseFragmentDialog : DialogFragment() {
      */
     protected abstract val layoutRes: Int
 
+    protected open fun windowAnimations() = 0
+
     fun setDismissListener(mListener: LocalDismissListener) {
         this.mListener = mListener
     }
@@ -40,7 +42,7 @@ abstract class BaseFragmentDialog : DialogFragment() {
         super.onCreate(savedInstanceState)
         isCancelable = this.canCancel()
         if (fullScreen()) {
-            setStyle(STYLE_NORMAL, R.style.FragmentDialog)
+            setStyle(STYLE_NORMAL, R.style.FragmentDialogTheme)
         }
     }
 
@@ -49,7 +51,7 @@ abstract class BaseFragmentDialog : DialogFragment() {
             val window = dialog!!.window
             if (window != null) {
                 window.requestFeature(Window.FEATURE_NO_TITLE)// 隐藏标题
-                window.attributes.windowAnimations = R.style.FragmentDialog
+                window.attributes.windowAnimations = windowAnimations()
             }
         }
         return inflater.inflate(layoutRes, container, false)

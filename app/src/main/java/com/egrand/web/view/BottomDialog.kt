@@ -22,8 +22,9 @@ class BottomDialog(private var data: MutableList<DialogMenuItem>) : BaseFragment
 
     private lateinit var adapter: CommonAdapter<DialogMenuItem>
     private var mListener: MenuItemClickListener? = null
-    override val layoutRes: Int = R.layout.dialog_bottom
     private var source: String? = null
+    override val layoutRes: Int = R.layout.dialog_bottom
+    override fun windowAnimations() = R.style.FragmentDialogPull
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

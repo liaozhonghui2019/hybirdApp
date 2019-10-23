@@ -15,7 +15,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
-        private var dbName="hybirdApp.db"
+        private var dbName = "hybirdApp.db"
         fun getInstance(cxt: Context): AppDatabase = INSTANCE ?: synchronized(this) {
             INSTANCE ?: buildDatabase(cxt).also { INSTANCE = it }
         }
@@ -25,8 +25,10 @@ abstract class AppDatabase : RoomDatabase() {
             return Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java, dbName
-            )
-                .build()
+            ).build()
+        }
+        public fun doUpgrade(context:Context){
+
         }
     }
 }

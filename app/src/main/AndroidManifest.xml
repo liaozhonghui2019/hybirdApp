@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.egrand.web">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".APP"
@@ -17,6 +19,14 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon"
         tools:targetApi="n">
+
+        <activity
+            android:label="ListView"
+            android:name=".activity.ListViewActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:theme="@style/AppTheme.NoneActionBar">
+
+        </activity>
 
         <activity
             android:name=".activity.DevTestActivity"
@@ -37,22 +47,23 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.WebActivity"
             android:label=""
             android:theme="@style/AppTheme.NoneActionBar" />
+
+        <activity
+            android:name=".qrcode.CaptureActivity"
+            android:theme="@style/AppTheme.NoneActionBar.Fullscreen" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.egrand.web"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />

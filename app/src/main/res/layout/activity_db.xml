@@ -11,46 +11,57 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"  android:orientation="vertical">
 
-        <Button
-            android:id="@+id/widgets_btn"
-            android:layout_width="234dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:text="Kotlin使用Android常用控件" />
-
-        <Button
-            android:id="@+id/json_btn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Kotlin使用Json数据" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/http_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Kotlin网络请求" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
 
-        <Button
-            android:id="@+id/btnDb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Kotlin操作数据库" />
+            <Button
+                android:id="@+id/widgets_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:text="Kotlin使用Android常用控件" />
 
-        <Button
-            android:id="@+id/btnUser"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:text="@string/db_btnUser" />
+            <Button
+                android:id="@+id/json_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Kotlin使用Json数据" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/http_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Kotlin网络请求" />
+
+            <Button
+                android:id="@+id/btnDb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Kotlin操作数据库" />
+
+            <Button
+                android:id="@+id/btnUser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="@string/db_btnUser" />
+
+        </LinearLayout>
+
     </FrameLayout>
 
 </LinearLayout>

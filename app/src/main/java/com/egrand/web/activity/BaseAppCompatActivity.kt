@@ -1,7 +1,6 @@
 package com.egrand.web.activity
 
 
-import android.annotation.TargetApi
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -26,13 +25,11 @@ abstract class BaseAppCompatActivity : AppCompatActivity() {
      */
     protected abstract val layoutRes: Int
 
-    protected open fun showBack(): Boolean = true
+    protected open fun useToolbar() = true
 
-    protected open fun useToolbar(): Boolean = true
+    protected open fun useBack() = true
 
-    protected open fun useBack(): Boolean = true
-
-    protected open fun useMenu(): Boolean = true
+    protected open fun useMenu() = true
 
     /**
      * [.onCreate]执行完成后立马执行该方法,子类可以复写该方法做一些数据绑定操作
@@ -77,18 +74,27 @@ abstract class BaseAppCompatActivity : AppCompatActivity() {
         }
     }
 
+    protected open fun onCreateMenu() {}
+
     protected open fun initToolbar() {
         if (this.useToolbar()) {
             toolbar.tvTitle.text = title
-            if (this.useBack()) toolbar.ivBack.visibility = View.VISIBLE
-            if (this.useMenu()) toolbar.ivMenu.visibility = View.VISIBLE
+            if (this.useBack()) {
+                toolbar.ivBack.visibility = View.VISIBLE
+                toolbar.ivBack.setOnClickListener {
+                    this.onBackPressed()
+                }
+            }
+
+            if (this.useMenu()) {
+                toolbar.ivMenu.visibility = View.VISIBLE
+                toolbar.ivMenu.setOnClickListener {
+                    this.onCreateMenu()
+                }
+            }
+
             setSupportActionBar(toolbar)
-//            if (this.showBack()) {
-//                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//                supportActionBar?.setDisplayShowHomeEnabled(true)
-//                supportActionBar?.setHomeButtonEnabled(true)
-//                toolbar.setNavigationOnClickListener { finish() }
-//            }
+
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2 && topBar != null) {
                 setTranslucentStatus(true)
                 var result = 0
@@ -111,28 +117,46 @@ abstract class BaseAppCompatActivity : AppCompatActivity() {
      * 设置透明状态栏
      * 对4.4及以上版本有效
      *
-     * @param on
+     * @param translucentStatus
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private fun setTranslucentStatus(on: Boolean) {
+    private fun setTranslucentStatus(translucentStatus: Boolean) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return
+        }
+
+        if (translucentStatus) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        } else {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
+
+        //Android 7.0 状态栏背景灰色 bug
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             try {
                 val decorViewClazz = Class.forName("com.android.internal.policy.DecorView")
                 val field = decorViewClazz.getDeclaredField("mSemiTransparentStatusBarColor")
                 field.isAccessible = true
-                field.setInt(window.decorView, Color.TRANSPARENT) //改为透明
+                field.setInt(window.decorView, Color.TRANSPARENT)
             } catch (e: Exception) {
                 Log.e("BaseAppCompatActivity", e.message)
                 e.printStackTrace()
             }
         }
-        val winParams = window.attributes
-        val bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-        if (on) {
-            winParams.flags = winParams.flags or bits
-        } else {
-            winParams.flags = winParams.flags and bits.inv()
+    }
+
+    /**
+     * 调节状态栏文字颜色
+     * @param dark 是否使用深色
+     */
+    protected fun adjustStatusBarTextColor(dark: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (dark) {
+                //状态栏文字颜色改为黑色
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } else {
+                //状态栏文字颜色改为白色
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            }
         }
-        window.attributes = winParams
     }
 }

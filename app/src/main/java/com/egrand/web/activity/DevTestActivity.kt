@@ -1,5 +1,6 @@
 package com.egrand.web.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,23 +14,39 @@ import com.egrand.web.adpter.recyclerview.MultiItemTypeAdapter
 import com.egrand.web.adpter.recyclerview.ViewHolder
 import com.egrand.web.constant.Constants
 import com.egrand.web.entity.App
+import com.egrand.web.qrcode.CaptureActivity
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
 class DevTestActivity : BaseRecyclerViewActivity<App>() {
 
-    override val layoutRes: Int = R.layout.activity_dev_test
+    private var requestCode = 1000
 
-    override fun useItemDecoration(): Boolean = false
+    override val layoutRes = R.layout.activity_dev_test
 
-    override fun useMenu(): Boolean = false
+    override fun useItemDecoration() = false
 
-    override fun getLayoutManager(): RecyclerView.LayoutManager = GridLayoutManager(this, 4)
+    override fun getLayoutManager() = GridLayoutManager(this, 4)
 
     override fun onCreated(savedInstanceState: Bundle?) {
         super.onCreated(savedInstanceState)
-        ivBack.setOnClickListener {
-            finish()
+        toolbar.ivMenu.setImageResource(R.drawable.ic_scan)
+        toolbar.ivMenu.setOnClickListener {
+            startActivityForResult(Intent(this@DevTestActivity, CaptureActivity::class.java), requestCode)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == this.requestCode && resultCode == Activity.RESULT_OK) {
+            val url = data?.getStringExtra("url")
+            if (!TextUtils.isEmpty(url)) {
+                val intent = Intent(this, WebActivity::class.java)
+                intent.putExtra("url", url)
+                startActivity(intent)
+                return
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun getAdapter(data: MutableList<App>, manager: FragmentManager): CommonAdapter<App> {
